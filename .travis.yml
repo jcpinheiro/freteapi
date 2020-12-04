@@ -1,0 +1,7 @@
+dist: xenial
+language: java
+jdk: openjdk14
+istall: true
+cache:
+  directories:
+    - $HOME/.m2
