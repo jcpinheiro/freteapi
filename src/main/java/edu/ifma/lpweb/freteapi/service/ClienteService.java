@@ -4,6 +4,8 @@ package edu.ifma.lpweb.freteapi.service;
 import edu.ifma.lpweb.freteapi.model.Cliente;
 import edu.ifma.lpweb.freteapi.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,8 +28,16 @@ public class ClienteService {
         return clienteRepository.findAll();
     }
 
+    public Optional<Cliente> buscaPor(Integer id) {
+        return clienteRepository.findById(id );
+    }
+
     public List<Cliente> buscaPor(String nome ) {
         return clienteRepository.findByNomeContaining(nome );
+    }
+
+    public Page<Cliente> buscaPor(String nome, Pageable paginacao) {
+        return clienteRepository.findByNomeContaining(nome, paginacao);
     }
 
     @Transactional
@@ -35,12 +45,15 @@ public class ClienteService {
         return clienteRepository.save(cliente );
     }
 
-    public Optional<Cliente> buscaPor(Integer id) {
-        return clienteRepository.findById(id );
-    }
 
     @Transactional
     public void removePelo(Integer id) {
         clienteRepository.deleteById(id );
     }
+
+    public Page<Cliente> buscaCom(Pageable paginacao) {
+        return clienteRepository.findAll(paginacao );
+    }
+
+
 }

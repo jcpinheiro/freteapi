@@ -4,6 +4,11 @@ package edu.ifma.lpweb.freteapi.controller;
 import edu.ifma.lpweb.freteapi.model.Cliente;
 import edu.ifma.lpweb.freteapi.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -26,14 +31,28 @@ public class ClienteController {
     }
 
 
-    @GetMapping
+/*    @GetMapping
     public List<Cliente> lista(String nome ) {
         if (nome == null ) {
             return clienteService.todos();
         } else {
             return clienteService.buscaPor(nome );
         }
+    }*/
+
+    @GetMapping
+    public Page<Cliente> lista(@RequestParam(required = false) String nome,
+                               @PageableDefault(sort = "id", direction = Sort.Direction.DESC, page = 0, size = 5)
+                                       Pageable paginacao) {
+        if (nome == null) {
+            Page<Cliente> pageClientes = clienteService.buscaCom(paginacao );
+            return pageClientes;
+        } else {
+            Page<Cliente> pageClientes = clienteService.buscaPor(nome, paginacao);
+            return pageClientes;
+        }
     }
+
 
     //versao 01
 /*
@@ -42,8 +61,6 @@ public class ClienteController {
         return clienteService.buscaPor(id ).get();
     }
 */
-
-
     //versao 02
     @GetMapping("/{id}")
     public ResponseEntity<Cliente> buscaPor(@PathVariable Integer id ) {
@@ -56,6 +73,7 @@ public class ClienteController {
     }
 
     /*
+    // versão 01
     @PostMapping
     public Cliente cadastrar(@RequestBody Cliente cliente ) {
         return clienteService.salva(cliente );
