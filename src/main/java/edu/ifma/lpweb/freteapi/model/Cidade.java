@@ -48,5 +48,4 @@ public class Cidade {
     public void setTaxa(BigDecimal taxa) {
         this.taxa = taxa;
     }
-
 }

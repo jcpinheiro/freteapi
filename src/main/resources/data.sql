@@ -13,7 +13,3 @@ INSERT INTO CIDADE(nome, taxa, uf) VALUES('Teresina', 50, 'PI');
 
 INSERT INTO FRETE(descricao, peso, valor, cidade_id, cliente_id) VALUES ('Produtos Eletrônicos', 100, 440, 1, 2);
 INSERT INTO FRETE(descricao, peso, valor, cidade_id, cliente_id) VALUES ('Alimentos nao perecíveis', 100, 200, 2, 3);
-
-
-INSERT INTO USUARIO(nome, email, senha) VALUES('Joao', 'joao@email.com', '$2a$10$neOHjWDoSuxqRKgwHXPMS.7fsUtH2NKeT6nrOPMYGJFTpqd91TDFi');
-

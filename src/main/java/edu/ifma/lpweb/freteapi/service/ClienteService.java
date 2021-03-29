@@ -6,9 +6,7 @@ import edu.ifma.lpweb.freteapi.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.DeleteMapping;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -29,11 +27,11 @@ public class ClienteService {
     }
 
     public Optional<Cliente> buscaPor(Integer id) {
-        return clienteRepository.findById(id );
+        return clienteRepository.findById(id);
     }
 
-    public List<Cliente> buscaPor(String nome ) {
-        return clienteRepository.findByNomeContaining(nome );
+    public List<Cliente> buscaPor(String nome) {
+        return clienteRepository.findByNomeContaining(nome);
     }
 
     public Page<Cliente> buscaPor(String nome, Pageable paginacao) {
@@ -42,13 +40,13 @@ public class ClienteService {
 
     @Transactional
     public Cliente salva(Cliente cliente) {
-        return clienteRepository.save(cliente );
+        return clienteRepository.save(cliente);
     }
 
 
     @Transactional
     public void removePelo(Integer id) {
-        clienteRepository.deleteById(id );
+        clienteRepository.deleteById(id);
     }
 
     public Page<Cliente> buscaCom(Pageable paginacao) {

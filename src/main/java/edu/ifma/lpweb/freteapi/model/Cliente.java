@@ -3,10 +3,7 @@ package edu.ifma.lpweb.freteapi.model;
 
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
@@ -19,6 +16,7 @@ public class Cliente {
 
     @NotNull @NotEmpty @Length(min = 3, max = 200)
     private String nome;
+
     private String endereco;
 
     @NotEmpty @Length(min = 8, message = "Deve possuir {min} dígitos no mínimo")
