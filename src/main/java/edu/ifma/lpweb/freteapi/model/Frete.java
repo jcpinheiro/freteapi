@@ -10,16 +10,15 @@ public class Frete {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+     private String descricao;
+    private Float peso;
+    private BigDecimal valor;
+
     @ManyToOne
     private Cliente cliente;
 
     @ManyToOne
     private Cidade cidade;
-
-    private String descricao;
-    private Float peso;
-    private BigDecimal valor;
-
 
     public int getId() {
         return this.id;
