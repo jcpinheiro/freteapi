@@ -51,10 +51,10 @@ public class ClienteController {
                                @PageableDefault(sort = "id", direction = Sort.Direction.ASC, page = 0, size = 5)
                                Pageable paginacao) {
         if (nome == null) {
-            Page<Cliente> pageClientes = clienteService.buscaCom(paginacao);
+            Page<Cliente> pageClientes = clienteService.buscaCom(paginacao );
             return pageClientes;
         } else {
-            Page<Cliente> pageClientes = clienteService.buscaPor(nome, paginacao);
+            Page<Cliente> pageClientes = clienteService.buscaPor(nome, paginacao );
             return pageClientes;
         }
     }
@@ -81,7 +81,6 @@ public class ClienteController {
         }
     }
 
-
     /*
     // versão 01
     @PostMapping
@@ -95,14 +94,16 @@ public class ClienteController {
                                             UriComponentsBuilder builder) {
 
         final Cliente clienteSalvo = clienteService.salva(cliente);
-        final URI uri = builder.path("/clientes/{id}").buildAndExpand(clienteSalvo.getId()).toUri();
+        final URI uri = builder
+                     .path("/clientes/{id}")
+                     .buildAndExpand(clienteSalvo.getId()).toUri();
 
-        return ResponseEntity.created(uri).body(clienteSalvo);
-
+        return ResponseEntity.created(uri).body(clienteSalvo );
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Cliente> atualiza(@PathVariable Integer id, @RequestBody Cliente cliente) {
+    public ResponseEntity<Cliente> atualiza(@PathVariable Integer id,
+                                            @RequestBody @Valid Cliente cliente) {
         Optional<Cliente> optional = clienteService.buscaPor(id);
 
         if (optional.isPresent()) {
@@ -116,7 +117,7 @@ public class ClienteController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> remover(@PathVariable Integer id) {
-        Optional<Cliente> optional = clienteService.buscaPor(id);
+        Optional<Cliente> optional = clienteService.buscaPor(id );
 
         if (optional.isPresent()) {
             clienteService.removePelo(id);
@@ -129,7 +130,7 @@ public class ClienteController {
     @PatchMapping("/{id}")
     public ResponseEntity<Cliente> atualizacaoParcial(@PathVariable Integer id,
                                                       @RequestBody Map<String, Object> campos) {
-        Optional<Cliente> optional = clienteService.buscaPor(id);
+        Optional<Cliente> optional = clienteService.buscaPor(id );
 
         if (optional.isPresent()) {
             Cliente clienteAtual = optional.get();

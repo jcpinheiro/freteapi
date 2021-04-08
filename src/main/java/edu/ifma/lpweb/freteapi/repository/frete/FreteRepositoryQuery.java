@@ -6,5 +6,5 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface FreteRepositoryQuery {
-    Page<Frete> filtra(FreteFiltro freteFiltro, Pageable pageable);
+    Page<Frete> filtra(FreteFiltro freteFiltro, Pageable pageable );
 }
